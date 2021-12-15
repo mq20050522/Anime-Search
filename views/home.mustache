@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<meta charset="UTF-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+<title>Anime QUOTE</title>
+<style type="text/css">
+* {
+	padding: 0;
+	margin: 0;
+	font-size: 14px;
+	font-family: 微软雅黑, Sofia;
+}
+
+body {
+	background-color: black;
+	margin: 0 auto;
+}
+
+.change-mode {
+  background-color: #ccc;
+  color: black;
+}
+
+#headers {
+	width: 100%;
+	height: 50px;
+	position: fixed;
+	top: 1px;	
+	transition: top 0.5s linear;
+}
+
+#headers .header_left {
+	float: left;
+	margin-left: 20px;
+	width: 300px;
+}
+
+#headers .header_right {
+	float: right;
+	margin-top: 20px;
+	margin-right: 250px;
+}
+
+#headers span {
+	color: white;
+	font-size: 20px;
+	line-height: 78px;
+	float: right;
+}
+a {
+  color: hotpink;
+}
+
+
+#theTitle{
+	font-family: "Times New Roman", Times, serif;
+	font-size: 40px;
+	margin: auto;
+	margin: 30px 0px;
+	color:white; 
+}
+
+#searchBar {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 10px;
+  border: 4px solid black;
+  background-color: white;
+  padding: 20px; 
+  width: 550px;
+  height: 20px;  
+  transform: scale(1.2); 
+}
+.searchButton{
+  margin-left: 20%;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  padding: 11px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 30px 0px;
+  transition-duration: 0.4s;
+}
+
+#about{
+	padding:6%;
+	background-color: black;
+	color:white;
+	border: 2px solid black;
+	cursor: pointer;
+}
+#about:hover{
+   padding:6%;
+   background-color: white;
+   color: black;
+   border: 2px solid black;
+  }
+ 
+.searchButton {
+  background-color: white; 
+  color: black; 
+  border: 2px solid white;
+  cursor: pointer;
+}
+
+.searchButton:hover {
+  background-color: #525252;
+  color: white;
+  border: 2px solid black;
+  
+}
+#head{
+	padding:8%;
+}
+.img{
+width: 100%;
+height:50%;
+opacity: 0.3;
+transform: scale(1.05);
+  max-width: 100%;
+  height: 200px;
+  object-fit: cover;
+   
+}
+
+#showing{
+	margin: 10%;
+}
+
+.display{
+
+	width: 20%;
+	height: 15%;
+	
+}
+
+.loader{
+		    --size: 32px;
+		    --duration: 800ms;
+		    width: 96px;
+		    height: 64px;
+		    margin: 50px auto;
+		    transform-style: preserve-3d;
+		    transform-origin: 50% 50%;
+		    position: relative;
+		    cursor: progress;
+		}
+		.loader .box{
+		    width:  32px;
+		    height: 32px;
+		    transform-style: preserve-3d;
+		    position: absolute;
+		    top: 0;
+		    left: 0;
+		}
+		.loader .box:nth-child(1){
+		    transform: translate(100%, 0);
+		    animation: box1 800ms linear infinite;
+		}
+		.loader .box:nth-child(2){
+		    transform: translate(0, 100%);
+		    animation: box2 800ms linear infinite;
+		}
+		.loader .box:nth-child(3){
+		    transform: translate(100%, 100%);
+		    animation: box3 800ms linear infinite;
+		}
+		.loader .box:nth-child(4){
+		    transform: translate(200%, 0);
+		    animation: box4 800ms linear infinite;
+		}
+		.loader .box > div{
+		    background:#ccc;
+		    width: 100%;
+		    height: 100%;
+		    position: absolute;
+		    top: auto;
+		    right: auto;
+		    bottom: auto;
+		    left: auto;
+		}
+
+		@keyframes box1{
+		    0%, 50%{ transform: translate(100%, 0); }
+		    100%{ transform: translate(200%, 0); }
+		}
+		@keyframes box2{
+		    0%{ transform: translate(0, 100%); }
+		    50%{ transform: translate(0, 0); }
+		    100%{ transform: translate(100%, 0); }
+		}
+		@keyframes box3{
+		    0%, 50%{ transform: translate(100%, 100%); }
+		    100%{ transform: translate(0, 100%); }
+		}
+		@keyframes box4{
+		    0%{ transform: translate(200%, 0); }
+		    50%{ transform: translate(200%, 100%); }
+		    100%{ transform: translate(100%, 100%); }
+		}
+
+		
+#about_block{
+	width: 30%;
+	padding-top:1%;
+	padding: 2%;
+    margin-left:32%;
+    margin-top:5%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #525252;
+    border: 15px solid white;
+    display: none;
+}
+
+#about_block .titlein{
+	 font-weight: bold;
+}
+
+.subtitle{
+	font-weight: bold;
+	font-size: 16px;
+}
+
+#close{
+	background-color: white;
+	padding: 3%;
+	margin:4%;
+	cursor: pointer;
+}
+
+
+</style>
+
+</head>
+
+<body>
+	<div id="headers">
+		<div class="header_left">
+			<button type="submit" id="about" style="font-size: 20px;font-family: Sofia;">About</button>
+		</div>
+		<div class="header_right">
+			<button id = "mode" onclick="changeColor()">MODE</button>
+		</div>
+		
+	</div>
+
+	
+ 	<div id = "head" align="center">
+			<div><p id="theTitle">Welcome to Quote Searching Engine</p><div>
+	 </div>
+			
+	<div id="boxForSearch">
+		<img alt="" src="./heads.jpg" class="img"style="vertical-align: middle"> 
+		
+		<div id = "seachbox">
+			<input type="search" id="searchBar" name="search">
+  			<button type="submit" id="btn" class = "searchButton" value="Submit">Search</button>
+		</div>
+		
+		
+ 	</div>
+ 	    <div class="loader">
+                      <div class="box">
+                          <div></div>
+         
+                      </div>
+                      <div class="box"> 
+                          <div></div>
+                   
+                      </div>
+                      <div class="box">
+                          <div></div>
+                      
+                      </div>
+                      <div class="box">
+                          <div></div>
+                          
+                      </div>
+                    </div>
+                    
+                    
+                    
+	       	<div class = "showing">
+	       		<div id ="test">
+		       		<!-- <div id = "inline">
+		       			<img alt="" src="./heads.jpg" class="display" style="vertical-align: middle">
+		       		</div>	
+		       		<div id = "inline">
+		       			<p style="color:white;">Some Anime name: character name: quote</p>
+		       		</div> -->
+	       		</div>
+	       	</div>
+	     
+       
+	<div id="about_block">
+		<p class = "titlein" style="font-size: 19px;color: white"><br>About</br></p>
+			<p class = "Subtitle" style="font-size: 17px;color: #ccc"><br>General_TEAM TRICYCLE:</br>
+			
+			<br>Quote and resources are coming from: <a  style="font-size: 17px;" href="https://www.less-real.com/quotes?p=1"target="_blank">Visit the quote website</a></br>
+			<br></br>
+			<br></br>
+			<br></br>
+			<br>Presented by team Tricycle</br>
+			<br>Back-end: MING, LEO, JACK</br>
+			<br>UI: JUDY </br></p>
+			
+			<br></br>
+			
+		<button type="submit" id="close" style="font-weight:bold;"value="Submit">CLOSE</button>
+		
+		</div>
+
+<script type="text/javascript" src="./jquery.min.js"></script>
+<script type="text/javascript">
+
+
+function search(string){
+    listOWords = string.toLowerCase().split(" ");
+    var animes = [];
+    var names = [];
+    var quotes = [];
+    for(let i=0;i<listOWords.length;i++){
+        if(i==0){
+            try {
+            animes.push(dictionary[listOWords[i]]["animes"]);
+            names.push(dictionary[listOWords[i]]["names"]);
+            quotes.push(dictionary[listOWords[i]]["quotes"]);
+            } catch{}
+        }
+        else {
+            try {
+            animes.concat(dictionary[listOWords[i]]["animes"]);
+            names.concat(dictionary[listOWords[i]]["names"]);
+            quotes.concat(dictionary[listOWords[i]]["quotes"]);
+            } catch{}
+        }
+    }
+    return [animes, names, quotes];
+}
+
+
+
+
+$(".loader").fadeIn();
+var information;
+
+$("#btn").click(function(){
+		var input = $('#searchBar').val();
+		alert(input);
+    information = search(input);
+    console.log("hi");
+})
+var data = information;
+setTimeout(function (){
+ $(".loader").fadeOut();
+ //data = null;
+ if(data == null || data.length <= 0){
+  var item = $('<img style="width:380px;height:300px;" src = "./notfound.png">');
+  $("#test").append(item);
+  return;
+ }
+ 
+ for(var i = 0; i < data.length; i++){
+  var item = $('<div id = "inline"><p style="color:white;">"'+data[i].msg+'"</p></div>');
+  $("#test").append(item);
+ }
+},3000)
+
+
+
+
+
+</script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
