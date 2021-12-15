@@ -36,21 +36,27 @@ app.post('/search', (req, res) => {
 //搜索function
 function search(string){
     listOWords = string.toLowerCase().split(" ");
-    var animes = [[]];
-    var names = [[]];
-    var quotes = [[]];
+    var animes = [];
+    var names = [];
+    var quotes = [];
     for(let i=0;i<listOWords.length;i++){
-        console.log(dictionary[listOWords[i]]["quotes"].length);
-        for(let j=0;j<dictionary[listOWords[i]]["quotes"].length;j++){
-            try{
-                if(!quotes[0].includes(dictionary[listOWords[i]]["quotes"][j])){
-                    animes[0].push(dictionary[listOWords[i]]["animes"][j]);
-                    names[0].push(dictionary[listOWords[i]]["names"][j]);
-                    quotes[0].push(dictionary[listOWords[i]]["quotes"][j]);
-                }
-            } catch{}
-        }
-
+        // console.log(dictionary[listOWords[i]]["quotes"].length);
+        try{
+            for(let j=0;j<dictionary[listOWords[i]]["quotes"].length;j++){
+                try{
+                    if(i==0 && j==0){
+                        animes.push([]);
+                        names.push([]);
+                        quotes.push([]);
+                    }
+                    if(!quotes[0].includes(dictionary[listOWords[i]]["quotes"][j])){
+                        animes[0].push(dictionary[listOWords[i]]["animes"][j]);
+                        names[0].push(dictionary[listOWords[i]]["names"][j]);
+                        quotes[0].push(dictionary[listOWords[i]]["quotes"][j]);
+                    }
+                } catch{}
+            }
+        } catch{}
     }
     return [animes, names, quotes];
 }
